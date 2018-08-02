@@ -9,9 +9,9 @@ import {
   Platform,
   TouchableOpacity,
   BackHandler
-} from 'react-native';
-import {Actions} from 'react-native-router-flux';
-
+} from 'react-native'
+import {Actions} from 'react-native-router-flux'
+import Topbar from '../components/Topbar'
 import Form from '../components/Form'
 
 export default class Pay extends Component {
@@ -25,7 +25,6 @@ export default class Pay extends Component {
   componentWillMount() {
     // this.getAccounts();
   }
-
   sendData = () => {
       const uid = 1;
       const toID = this.state.code;
@@ -43,33 +42,33 @@ export default class Pay extends Component {
 
 	render() {
 		return(
-			<View style={styles.container}>
-
-        <TextInput style={styles.inputBox}
+      <View style={styles2.container}>
+      <Topbar > </Topbar>
+        <TextInput style={styles2.inputBox}
                 underlineColorAndroid='rgba(0,0,0,0)'
-                placeholder="Code"
+                placeholder="Merchant Code"
                 placeholderTextColor = "#dddad7"
                 selectionColor="#fff"
                 keyboardType="email-address"
                 value={this.state.code}
                 onChangeText={code => this.setState({code})}
         />
-        <TextInput style={styles.inputBox}
+        <TextInput style={styles2.inputBox}
               underlineColorAndroid='rgba(0,0,0,0)'
               placeholder="Amount"
               placeholderTextColor = "#dddad7"
               value={this.state.amount}
               onChangeText={amount => this.setState({amount})}
-              />
+        />
 
-        <TouchableOpacity style={styles.button1} onPress={this.sendData}>
-         <Text style={styles.buttonText}>Send</Text>
+        <TouchableOpacity style={styles2.button1} onPress={this.sendData}>
+         <Text style={styles2.buttonText}>Send</Text>
        </TouchableOpacity>
-			</View>
+      </View>
 			)
 	}
 }
-const styles = StyleSheet.create({
+const styles2 = StyleSheet.create({
   container : {
     backgroundColor:'#dddad7',
     flex: 1,
@@ -82,13 +81,20 @@ const styles = StyleSheet.create({
     paddingHorizontal:16,
     fontSize:16,
     color:'#636e72',
-    marginVertical: 10,
+    marginVertical: 5,
     padding:10
   },
   button1: {
     width:300,
     backgroundColor:'#42806f',
-    marginVertical: 10,
+    marginVertical: 5,
+    paddingVertical: 13,
+    marginTop:20
+  },
+  button2: {
+    width:300,
+    backgroundColor:'#b78e34',
+    marginVertical: 5,
     paddingVertical: 13
   },
   buttonText: {

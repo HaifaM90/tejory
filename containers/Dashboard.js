@@ -21,6 +21,9 @@ export default class Dashboard extends React.Component {
  goAccountS = () => {
     Actions.account_statement();
   }
+  goPay =()=>{
+    Actions.pay();
+  }
 getBalance =() => {
   return fetch('http://ec2-54-244-199-67.us-west-2.compute.amazonaws.com:3000/accounts/1')
     .then((response) => response.json())
@@ -53,46 +56,7 @@ componentWillMount() {
    return (
      <View style={{backgroundColor: '#dddad7', height: '100%'}}>
 
-
-     <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-          }}>
-
-
-          <KeyboardAvoidingView  behavior='padding' enabeld style={styles2.container}>
-            <TextInput style={styles2.inputBox}
-                    underlineColorAndroid='rgba(0,0,0,0)'
-                    placeholder="Merchant Code"
-                    placeholderTextColor = "#dddad7"
-                    selectionColor="#fff"
-                    keyboardType="email-address"
-                    value={this.state.code}
-                    onChangeText={code => this.setState({code})}
-            />
-            <TextInput style={styles2.inputBox}
-                  underlineColorAndroid='rgba(0,0,0,0)'
-                  placeholder="Amount"
-                  placeholderTextColor = "#dddad7"
-                  value={this.state.amount}
-                  onChangeText={amount => this.setState({amount})}
-            />
-
-            <TouchableOpacity style={styles2.button1} onPress={this.sendData}>
-             <Text style={styles2.buttonText}>Send</Text>
-           </TouchableOpacity>
-           <TouchableOpacity
-                style={styles2.button2}
-                onPress={() => {this.setModalVisible(!this.state.modalVisible);}}>
-                <Text style={styles2.buttonText}>Cancel</Text>
-          </TouchableOpacity>
-          </KeyboardAvoidingView>
-        </Modal>
-
-
-     <Topbar title='Nasser Ali Khan'> </Topbar>
+     <Topbar > </Topbar>
 
         <View style = {styles.middle}>
           <View style = {styles.balance_box}>
@@ -106,7 +70,7 @@ componentWillMount() {
 
         <View style={styles.quick_actions}>
         <View style={{alignItems: 'center'}}>
-            <TouchableOpacity onPress={() => {this.setModalVisible(true);}}>
+            <TouchableOpacity onPress={() => {this.goPay();}}>
               <View style = {styles.first_box}>
                 <View style={styles.sms_box}>
                 <Image style={styles.icon} source={require('../images/sms.png')} />

@@ -10,6 +10,10 @@ export default class AccountStatement extends React.Component {
 state={account_statement:[]}
 
   componentWillMount() {
+    BackHandler.addEventListener("hardwareBackPress", () => {
+  return true;
+
+});
     return fetch('http://ec2-54-244-199-67.us-west-2.compute.amazonaws.com:3000/transactions')
      .then((response) => response.json())
      .then((responseJson) => {
@@ -23,7 +27,7 @@ state={account_statement:[]}
   render() {
     return (
       <View style={{backgroundColor: '#dddad7', height: '100%'}}>
-        <Topbar title='Nasser Ali Khan'> </Topbar>
+        <Topbar > </Topbar>
 
         <ScrollView style=  {{ marginTop:120}}>
 
@@ -38,8 +42,3 @@ state={account_statement:[]}
   }
 
 };
-BackHandler.addEventListener("hardwareBackPress", () => {
-
-   Actions.pop()
-
-})
