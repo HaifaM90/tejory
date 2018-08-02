@@ -5,7 +5,8 @@ import {
   Image,
   View,
   StatusBar ,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from 'react-native';
 
 import Logo from '../components/Logo';
@@ -23,15 +24,15 @@ export default class Login extends Component{
 
 	render() {
 		return(
-			<View style={styles.container}>
+			<KeyboardAvoidingView  behavior='padding' enabeld style={styles.container}>
 				<Image  style={{width:250, height: 300,marginTop: 100}}
                 source={require('../images/logo.png')}/>
 				<Form type="Login"/>
 				<View style={styles.signupTextCont}>
-					<Text style={styles.signupText}>Don't have an account yet?</Text>
+					<Text style={styles.signupText}>Do not have an account yet?</Text>
 					<TouchableOpacity onPress={this.signup}><Text style={styles.signupButton}> Signup</Text></TouchableOpacity>
 				</View>
-			</View>	
+			</KeyboardAvoidingView>
 			)
 	}
 }

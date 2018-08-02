@@ -37,8 +37,7 @@ export default class Form extends Component {
             <TextInput style={styles.inputBox}
                 placeholder="Border Number"
                 placeholderTextColor = "#dddad7"
-                selectionColor="#fff"
-                keyboardType="email-address"
+                //selectionColor="#fff"
                 value={this.state.border_num}
                 onChangeText={border_num => this.setState({border_num})}
                 />
@@ -53,7 +52,7 @@ export default class Form extends Component {
             <TextInput style={styles.inputBox}
               underlineColorAndroid='rgba(0,0,0,0)'
               placeholder="Password"
-              secureTextEntry={this.props.type == "Login" ? true : false}
+              secureTextEntry={true}
               placeholderTextColor = "#dddad7"
               value={this.state.password}
               onChangeText={password=> this.setState({password})}

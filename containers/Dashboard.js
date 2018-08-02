@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View,Image,TouchableOpacity, Modal,TextInput,Linking} from 'react-native'
+import { StyleSheet, Text, View,Image,TouchableOpacity, Modal,TextInput,Linking, KeyboardAvoidingView} from 'react-native'
 import {Column as Col, Row} from 'react-native-flexbox-grid'
 import Topbar from '../components/Topbar';
 
@@ -62,8 +62,7 @@ componentWillMount() {
           }}>
 
 
-          <View style={styles2.container}>
-          <Topbar title='Nasser Ali Khan'> </Topbar>
+          <KeyboardAvoidingView  behavior='padding' enabeld style={styles2.container}>
             <TextInput style={styles2.inputBox}
                     underlineColorAndroid='rgba(0,0,0,0)'
                     placeholder="Merchant Code"
@@ -89,7 +88,7 @@ componentWillMount() {
                 onPress={() => {this.setModalVisible(!this.state.modalVisible);}}>
                 <Text style={styles2.buttonText}>Cancel</Text>
           </TouchableOpacity>
-          </View>
+          </KeyboardAvoidingView>
         </Modal>
 
 

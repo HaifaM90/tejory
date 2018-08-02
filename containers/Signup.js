@@ -6,7 +6,8 @@ import {
   View,
   Image,
   StatusBar ,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from 'react-native';
 
 import Logo from '../components/Logo';
@@ -22,11 +23,11 @@ export default class Signup extends Component{
 
 	render() {
 		return(
-			<View style={styles.container}>
+			<KeyboardAvoidingView  behavior='padding' enabeld style={styles.container}>
 				<Image  style={{width:200, height: 250,marginTop: 60,marginBottom: 30}}
                 source={require('../images/logo.png')}/>
 				<Form type="Signup"/>
-			</View>	
+			</KeyboardAvoidingView>
 			)
 	}
 }
