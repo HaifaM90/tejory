@@ -1,5 +1,19 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "Tejory-تجوري",
+    "icon": "./images/app-icon.png",
+    "version": "1.0.0",
+    "ios": {
+      "bundleIdentifier": "hajj.hachathon.tamkeen"
+    },
+    "android": {
+      "package": "hajj.hachathon.tamkeen"
+    },
+    "sdkVersion": "27.0.0",
+    "splash": {
+  "image": "./images/splash-sc.png",
+  "backgroundColor": "#dddad7",
+  "resizeMode": "cover",
+}
   }
 }
