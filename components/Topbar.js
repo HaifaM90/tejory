@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
      justifyContent: 'space-between',
      borderBottomWidth: 2,
      borderColor:'#fff',
+     position: 'absolute',
+     top: 0,
+    
   },
   title: {
     color: '#112340',

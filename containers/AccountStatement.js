@@ -22,17 +22,19 @@ state={account_statement:[]}
 
   render() {
     return (
-      <View style={{backgroundColor: '#dddad7'}}>
-      <Topbar title='Nasser Ali Khan'> </Topbar>
-      <ScrollView style={{ marginTop:20}}>
-      {
-        this.state.account_statement.map((l, i) => (
-      <AccountCard date={Moment(l.created_at).format('DD MMMM YYYY')} balance={l.amount} isDeposit={l.credit_account.id==1?'true':'false'} retailer={l.credit_account.owner_name}> </AccountCard>
+      <View style={{backgroundColor: '#dddad7', height: '100%'}}>
+        <Topbar title='Nasser Ali Khan'> </Topbar>
 
-  ))
-    }
-      </ScrollView>
-    </View>  );
+        <ScrollView style=  {{ marginTop:120}}>
+
+        {
+          this.state.account_statement.map((l, i) => (
+        <AccountCard date={Moment(l.created_at).format('DD MMMM YYYY')} balance={l.amount} isDeposit={l.credit_account.id==1?'true':'false'} retailer={l.credit_account.owner_name}> </AccountCard>))
+        }
+
+        </ScrollView>
+      </View>
+   );
   }
 
 }

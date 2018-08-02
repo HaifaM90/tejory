@@ -57,7 +57,9 @@ componentWillMount() {
           onRequestClose={() => {
           }}>
           >
+
           <View style={styles2.container}>
+          <Topbar title='Nasser Ali Khan'> </Topbar>
             <TextInput style={styles2.inputBox}
                     underlineColorAndroid='rgba(0,0,0,0)'
                     placeholder="Code"
@@ -88,6 +90,7 @@ componentWillMount() {
 
 
      <Topbar title='Nasser Ali Khan'> </Topbar>
+
         <View style = {styles.middle}>
           <View style = {styles.balance_box}>
             <Image style={styles.money_icon} source={require('../images/rich.png')} />
@@ -130,6 +133,7 @@ componentWillMount() {
             </TouchableOpacity>
           </View>
         </View>
+
      </View>
    );
  }
@@ -189,7 +193,7 @@ const styles = StyleSheet.create({
       flex: 10,
       alignItems:'center',
       paddingBottom: 30,
-      marginTop: 20,
+      marginTop: 120,
       backgroundColor: '#dddad7',
 
     },

@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
-import Form from '../components/Form';
+import Form from '../components/Form'
 
 export default class Pay extends Component {
 
@@ -43,27 +43,28 @@ export default class Pay extends Component {
 	render() {
 		return(
 			<View style={styles.container}>
-        <TextInput style={styles.inputBox} 
-                underlineColorAndroid='rgba(0,0,0,0)' 
+
+        <TextInput style={styles.inputBox}
+                underlineColorAndroid='rgba(0,0,0,0)'
                 placeholder="Code"
                 placeholderTextColor = "#dddad7"
                 selectionColor="#fff"
                 keyboardType="email-address"
                 value={this.state.code}
                 onChangeText={code => this.setState({code})}
-        /> 
-        <TextInput style={styles.inputBox} 
-              underlineColorAndroid='rgba(0,0,0,0)' 
+        />
+        <TextInput style={styles.inputBox}
+              underlineColorAndroid='rgba(0,0,0,0)'
               placeholder="Amount"
               placeholderTextColor = "#dddad7"
               value={this.state.amount}
               onChangeText={amount => this.setState({amount})}
-              /> 
+              />
 
         <TouchableOpacity style={styles.button1} onPress={this.sendData}>
          <Text style={styles.buttonText}>Send</Text>
-       </TouchableOpacity>  
-			</View>	
+       </TouchableOpacity>
+			</View>
 			)
 	}
 }
@@ -103,5 +104,5 @@ const styles = StyleSheet.create({
     left: 0,
     position: 'absolute',
   }
-  
+
 });
