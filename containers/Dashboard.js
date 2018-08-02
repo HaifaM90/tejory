@@ -1,40 +1,98 @@
 import React from 'react'
-import { StyleSheet, Text, View,Image} from 'react-native'
+import { StyleSheet, Text, View,Image,TouchableOpacity, Modal,TextInput} from 'react-native'
 import {Column as Col, Row} from 'react-native-flexbox-grid'
 import Topbar from '../components/Topbar';
 
+import {Actions} from 'react-native-router-flux';
+
+
 export default class Dashboard extends React.Component {
  state = {
-   email: '',
+   balance: '',
    password: '',
+   modalVisible: false,
  }
+ setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+ go = () => {
+    Actions.pay();
+  }
 
 componentWillMount() {
-  
+  return fetch('http://ec2-54-244-199-67.us-west-2.compute.amazonaws.com:3000/accounts/1')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({balance:responseJson.balance})
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
  render() {
    return (
      <View style={{backgroundColor: '#dddad7', height: '100%'}}>
 
+
+     <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          >
+          <View style={styles2.container}>
+            <TextInput style={styles2.inputBox} 
+                    underlineColorAndroid='rgba(0,0,0,0)' 
+                    placeholder="Code"
+                    placeholderTextColor = "#dddad7"
+                    selectionColor="#fff"
+                    keyboardType="email-address"
+                    value={this.state.code}
+                    onChangeText={code => this.setState({code})}
+            /> 
+            <TextInput style={styles2.inputBox} 
+                  underlineColorAndroid='rgba(0,0,0,0)' 
+                  placeholder="Amount"
+                  placeholderTextColor = "#dddad7"
+                  value={this.state.amount}
+                  onChangeText={amount => this.setState({amount})}
+            /> 
+
+            <TouchableOpacity style={styles2.button1} onPress={this.sendData}>
+             <Text style={styles2.buttonText}>Send</Text>
+           </TouchableOpacity>  
+           <TouchableOpacity
+                style={styles2.button2}
+                onPress={() => {this.setModalVisible(!this.state.modalVisible);}}>
+                <Text style={styles2.buttonText}>Cancel</Text>
+          </TouchableOpacity>
+          </View> 
+        </Modal>
+
+
      <Topbar title='Nasser Ali Khan'> </Topbar>
         <View style = {styles.middle}>
           <View style = {styles.balance_box}>
             <Image style={styles.money_icon} source={require('../images/rich.png')} />
-              <Text style={styles.balance}>500 SR</Text>
+              <Text style={styles.balance}>{this.state.balance}</Text>
               <Text style={styles.heading_title}>Current Balance</Text>
           </View>
         </View>
+
+        
+
         <View style={styles.quick_actions}>
         <View style={{alignItems: 'center'}}>
-            <View style = {styles.first_box}>
-            <View style={styles.sms_box}>
-            <Image style={styles.icon} source={require('../images/sms.png')} />
-            </View>
-            <View style={styles.left_text}>
-              <Text style={styles.label}>Pay by SMS</Text>
+            <TouchableOpacity onPress={() => {this.setModalVisible(true);}}>
+              <View style = {styles.first_box}>
+                <View style={styles.sms_box}>
+                <Image style={styles.icon} source={require('../images/sms.png')} />
+                </View>
+                <View style={styles.left_text}>
+                  <Text style={styles.label}>Pay by SMS</Text>
+                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
             <View style = {styles.second_box}>
                 <View style={styles.qr_box}>
             <Image style={styles.icon} source={require('../images/qr-code.png')} />
@@ -58,6 +116,55 @@ componentWillMount() {
  }
 }
 
+
+
+const styles2 = StyleSheet.create({
+  container : {
+    backgroundColor:'#dddad7',
+    flex: 1,
+    alignItems:'center',
+    justifyContent :'center'
+  },
+  inputBox: {
+    width:300,
+    backgroundColor:'#fff',
+    paddingHorizontal:16,
+    fontSize:16,
+    color:'#636e72',
+    marginVertical: 5,
+    padding:10
+  },
+  button1: {
+    width:300,
+    backgroundColor:'#42806f',
+    marginVertical: 5,
+    paddingVertical: 13,
+    marginTop:20
+  },
+  button2: {
+    width:300,
+    backgroundColor:'#b78e34',
+    marginVertical: 5,
+    paddingVertical: 13
+  },
+  buttonText: {
+    fontSize:16,
+    fontWeight:'500',
+    color:'#ffffff',
+    textAlign:'center'
+  },
+  icon: {
+    width:30,
+    height: 30,
+    marginTop: 70,
+    left: 0,
+    position: 'absolute',
+  }
+  
+});
+
+
+
 const styles = StyleSheet.create({
     topbar: {
        width: '100%',
@@ -75,7 +182,7 @@ const styles = StyleSheet.create({
        borderColor:'#fff',
     },
     middle: {
-      flex: 6,
+      flex: 10,
       alignItems:'center',
       paddingBottom: 30,
       marginTop: 20,
@@ -85,8 +192,7 @@ const styles = StyleSheet.create({
     balance_box: {
       width: 340,
       backgroundColor:'#112340',
-      paddingBottom: 40,
-      height: 340,
+      height: 320,
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems:'center',
@@ -169,7 +275,7 @@ const styles = StyleSheet.create({
     },
     quick_actions: {
       flexDirection: 'column',
-      marginTop:0,
+      margin:0,
       flex: 10,
       alignItems:'center',
       backgroundColor: '#dddad7',

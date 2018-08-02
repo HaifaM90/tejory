@@ -7,7 +7,7 @@ import {
   TextInput,
   Linking,
   Platform,
-  TouchableOpacity 
+  TouchableOpacity
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
@@ -20,24 +20,14 @@ export default class Pay extends Component {
     code: '',
   }
 
-  getAccounts() {
-    return fetch('http://ec2-54-244-199-67.us-west-2.compute.amazonaws.com:3000/accounts/1')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson)
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
 
   componentWillMount() {
     // this.getAccounts();
   }
 
   sendData = () => {
-      const uid = 2;
-      const toID = 1;
+      const uid = 1;
+      const toID = this.state.code;
 
       const url = 'sms:+13342924340?body=From:'+uid+'\nTo:'+toID+'\nAmount:'+this.state.amount
 
@@ -70,7 +60,7 @@ export default class Pay extends Component {
               onChangeText={amount => this.setState({amount})}
               /> 
 
-        <TouchableOpacity style={styles.button} onPress={this.sendData}>
+        <TouchableOpacity style={styles.button1} onPress={this.sendData}>
          <Text style={styles.buttonText}>Send</Text>
        </TouchableOpacity>  
 			</View>	
@@ -90,11 +80,11 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff',
     paddingHorizontal:16,
     fontSize:16,
-    color:'#ffffff',
+    color:'#636e72',
     marginVertical: 10,
     padding:10
   },
-  button: {
+  button1: {
     width:300,
     backgroundColor:'#42806f',
     marginVertical: 10,
