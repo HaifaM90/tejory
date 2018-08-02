@@ -1,15 +1,18 @@
 import React from 'react'
-import { StyleSheet, View} from 'react-native'
-import SignIn from './containers/SignIn'
+import { StyleSheet, View, StatusBar} from 'react-native'
 import Registration from './containers/Registration'
 import Dashboard from './containers/Dashboard'
+import Login from './containers/Login'
+import Signup from './containers/Signup'
+import Routes from './Routes';
+
 
 export default class App extends React.Component {
 
  render() {
    return (
      <View style={styles.container}>
-         <Dashboard />
+         <Routes/>
      </View>
    );
  }
@@ -17,9 +20,6 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
  container: {
-   flex: 1,
- },
- form: {
    flex: 1,
  }
 });

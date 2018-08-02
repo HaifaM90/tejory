@@ -11,9 +11,9 @@
     },
     "sdkVersion": "27.0.0",
     "splash": {
-  "image": "./images/splash-sc.png",
-  "backgroundColor": "#dddad7",
-  "resizeMode": "cover",
-}
+    "image": "./images/splash-sc.png",
+    "backgroundColor": "#dddad7",
+    "resizeMode": "cover",
+  }
   }
 }

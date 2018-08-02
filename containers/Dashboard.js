@@ -1,54 +1,115 @@
 import React from 'react'
-import { StyleSheet, Text, View,Image} from 'react-native'
+import { StyleSheet, Text, View,Image,TouchableOpacity, Modal,TextInput,Linking} from 'react-native'
 import {Column as Col, Row} from 'react-native-flexbox-grid'
 import Topbar from '../components/Topbar';
 
+import {Actions} from 'react-native-router-flux';
+
+
 export default class Dashboard extends React.Component {
  state = {
-   email: '',
+   balance: '',
    password: '',
+   modalVisible: false,
  }
+ setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+ go = () => {
+    Actions.pay();
+  }
+
+sendData = () => {
+    const uid = 1;
+    const toID = this.state.code;
+
+    const url = 'sms:+13342924340?body=From:'+uid+'\nTo:'+toID+'\nAmount:'+this.state.amount
+
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log('Unsupported url: ' + url)
+      } else {
+        return Linking.openURL(url)
+      }
+    }).catch(err => console.error('An error occurred', err))
+  }
 
 componentWillMount() {
-  // firebase.initializeApp({
-  //   apiKey: "AIzaSyDIc8Dcpn03wvh8gA3rUWivuQt8rHKP0As",
-  //   authDomain: "wallet-01.firebaseapp.com",
-  //   databaseURL: "https://wallet-01.firebaseio.com",
-  //   projectId: "wallet-01",
-  //   storageBucket: "wallet-01.appspot.com",
-  //   messagingSenderId: "270396117096"
-  //   });
-  // this.ref = firebase.firestore().collection('users')
-  // this.ref.add({
-  //   border_number: "1234",
-  //   mobile_number:"056765342",
-  //   name: "test",
-  //   password: "1234"
-  // })
+  return fetch('http://ec2-54-244-199-67.us-west-2.compute.amazonaws.com:3000/accounts/1')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({balance:responseJson.balance})
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
  render() {
    return (
      <View style={{backgroundColor: '#dddad7', height: '100%'}}>
 
+
+     <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+          }}>
+          >
+          <View style={styles2.container}>
+            <TextInput style={styles2.inputBox} 
+                    underlineColorAndroid='rgba(0,0,0,0)' 
+                    placeholder="Code"
+                    placeholderTextColor = "#dddad7"
+                    selectionColor="#fff"
+                    keyboardType="email-address"
+                    value={this.state.code}
+                    onChangeText={code => this.setState({code})}
+            /> 
+            <TextInput style={styles2.inputBox} 
+                  underlineColorAndroid='rgba(0,0,0,0)' 
+                  placeholder="Amount"
+                  placeholderTextColor = "#dddad7"
+                  value={this.state.amount}
+                  onChangeText={amount => this.setState({amount})}
+            /> 
+
+            <TouchableOpacity style={styles2.button1} onPress={this.sendData}>
+             <Text style={styles2.buttonText}>Send</Text>
+           </TouchableOpacity>  
+           <TouchableOpacity
+                style={styles2.button2}
+                onPress={() => {this.setModalVisible(!this.state.modalVisible);}}>
+                <Text style={styles2.buttonText}>Cancel</Text>
+          </TouchableOpacity>
+          </View> 
+        </Modal>
+
+
      <Topbar title='Nasser Ali Khan'> </Topbar>
         <View style = {styles.middle}>
           <View style = {styles.balance_box}>
             <Image style={styles.money_icon} source={require('../images/rich.png')} />
-              <Text style={styles.balance}>500 SR</Text>
+              <Text style={styles.balance}>{this.state.balance}</Text>
               <Text style={styles.heading_title}>Current Balance</Text>
           </View>
         </View>
+
+        
+
         <View style={styles.quick_actions}>
         <View style={{alignItems: 'center'}}>
-            <View style = {styles.first_box}>
-            <View style={styles.sms_box}>
-            <Image style={styles.icon} source={require('../images/sms.png')} />
-            </View>
-            <View style={styles.left_text}>
-              <Text style={styles.label}>Pay by SMS</Text>
+            <TouchableOpacity onPress={() => {this.setModalVisible(true);}}>
+              <View style = {styles.first_box}>
+                <View style={styles.sms_box}>
+                <Image style={styles.icon} source={require('../images/sms.png')} />
+                </View>
+                <View style={styles.left_text}>
+                  <Text style={styles.label}>Pay by SMS</Text>
+                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
             <View style = {styles.second_box}>
                 <View style={styles.qr_box}>
             <Image style={styles.icon} source={require('../images/qr-code.png')} />
@@ -72,9 +133,58 @@ componentWillMount() {
  }
 }
 
+
+
+const styles2 = StyleSheet.create({
+  container : {
+    backgroundColor:'#dddad7',
+    flex: 1,
+    alignItems:'center',
+    justifyContent :'center'
+  },
+  inputBox: {
+    width:300,
+    backgroundColor:'#fff',
+    paddingHorizontal:16,
+    fontSize:16,
+    color:'#636e72',
+    marginVertical: 5,
+    padding:10
+  },
+  button1: {
+    width:300,
+    backgroundColor:'#42806f',
+    marginVertical: 5,
+    paddingVertical: 13,
+    marginTop:20
+  },
+  button2: {
+    width:300,
+    backgroundColor:'#b78e34',
+    marginVertical: 5,
+    paddingVertical: 13
+  },
+  buttonText: {
+    fontSize:16,
+    fontWeight:'500',
+    color:'#ffffff',
+    textAlign:'center'
+  },
+  icon: {
+    width:30,
+    height: 30,
+    marginTop: 70,
+    left: 0,
+    position: 'absolute',
+  }
+  
+});
+
+
+
 const styles = StyleSheet.create({
     middle: {
-      flex: 4,
+      flex: 10,
       alignItems:'center',
       paddingBottom: 30,
       marginTop: 20,
@@ -84,7 +194,6 @@ const styles = StyleSheet.create({
     balance_box: {
       width: 340,
       backgroundColor:'#112340',
-      paddingBottom: 40,
       height: 320,
       flexDirection: 'column',
       justifyContent: 'center',
@@ -99,7 +208,7 @@ const styles = StyleSheet.create({
       backgroundColor:'#b68e34',
       padding: 50,
       width: 340,
-      height: 90,
+      height: 70,
       padding: 0,
       marginTop: 20,
       alignItems: 'center',
@@ -110,7 +219,7 @@ const styles = StyleSheet.create({
   backgroundColor:'#539e89',
       padding: 50,
       width: 340,
-      height: 90,
+      height: 70,
       padding: 0,
       marginTop: 10,
       alignItems: 'center',
@@ -122,7 +231,7 @@ const styles = StyleSheet.create({
       backgroundColor:'#376587',
       padding: 50,
       width: 340,
-      height: 90,
+      height: 70,
       padding: 0,
       marginTop: 10,
       alignItems: 'center',
@@ -134,21 +243,21 @@ const styles = StyleSheet.create({
           justifyContent:'center',
             alignItems: 'center',
         width: 90,
-            height: 90,
+            height: 70,
 
     },qr_box: {
       backgroundColor:'#43806f',
       justifyContent:'center',
       alignItems: 'center',
       width: 90,
-      height: 90,
+      height: 70,
     },
     log_box: {
       backgroundColor:'#2d5470',
       justifyContent:'center',
       alignItems: 'center',
       width: 90,
-      height: 90,
+      height: 70,
     },
     heading: {
       justifyContent:'center',
@@ -160,17 +269,17 @@ const styles = StyleSheet.create({
     },
     heading_title: {
        color: '#dddad7',
-       fontSize: 30,
+       fontSize: 20,
     },
     quick_actions: {
       flexDirection: 'column',
-      marginTop:80,
+      margin:0,
       flex: 10,
       alignItems:'center',
       backgroundColor: '#dddad7',
     },
     label: {
-      fontSize: 24,
+      fontSize: 18,
       color: '#dddad7',
       fontWeight: 'bold'
     },
