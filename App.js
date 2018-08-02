@@ -18,12 +18,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
  container: {
    flex: 1,
-   paddingRight: 20,
-   paddingLeft: 20,
-   alignItems: 'center',
-   justifyContent: 'center',
-   flexDirection: 'row',
-   backgroundColor: '#e7ecef'
  },
  form: {
    flex: 1,
