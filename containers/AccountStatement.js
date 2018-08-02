@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View,Image, ScrollView} from 'react-native'
+import { StyleSheet, Text, View,Image, ScrollView, BackHandler} from 'react-native'
 import {Column as Col, Row} from 'react-native-flexbox-grid'
 import Topbar from '../components/Topbar'
 import AccountCard from '../components/AccountCard'
@@ -37,4 +37,9 @@ state={account_statement:[]}
    );
   }
 
-}
+};
+BackHandler.addEventListener("hardwareBackPress", () => {
+
+   Actions.pop()
+
+})

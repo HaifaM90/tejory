@@ -7,7 +7,8 @@ import {
   TextInput,
   Linking,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  BackHandler
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
@@ -68,7 +69,6 @@ export default class Pay extends Component {
 			)
 	}
 }
-
 const styles = StyleSheet.create({
   container : {
     backgroundColor:'#dddad7',

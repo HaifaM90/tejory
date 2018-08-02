@@ -13,12 +13,24 @@ export default class Dashboard extends React.Component {
    modalVisible: false,
  }
  setModalVisible(visible) {
+   if(!visible){
+  this.getBalance();
+   }
     this.setState({modalVisible: visible});
   }
  goAccountS = () => {
     Actions.account_statement();
   }
-
+getBalance =() => {
+  return fetch('http://ec2-54-244-199-67.us-west-2.compute.amazonaws.com:3000/accounts/1')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({balance:responseJson.balance})
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
 sendData = () => {
     const uid = 1;
     const toID = this.state.code;
@@ -33,16 +45,8 @@ sendData = () => {
       }
     }).catch(err => console.error('An error occurred', err))
   }
-
 componentWillMount() {
-  return fetch('http://ec2-54-244-199-67.us-west-2.compute.amazonaws.com:3000/accounts/1')
-    .then((response) => response.json())
-    .then((responseJson) => {
-      this.setState({balance:responseJson.balance})
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  return this.getBalance();
 }
 
  render() {
@@ -62,7 +66,7 @@ componentWillMount() {
           <Topbar title='Nasser Ali Khan'> </Topbar>
             <TextInput style={styles2.inputBox}
                     underlineColorAndroid='rgba(0,0,0,0)'
-                    placeholder="Code"
+                    placeholder="Merchant Code"
                     placeholderTextColor = "#dddad7"
                     selectionColor="#fff"
                     keyboardType="email-address"
