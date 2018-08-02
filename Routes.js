@@ -13,8 +13,8 @@ export default class Routes extends Component{
 			    <Stack key="root" hideNavBar={true}>
 			      <Scene key="signup" component={Signup} title="Register"  />
 			      <Scene key="login" component={Login} title="Login"   />
-			      <Scene key="dashboard" component={Dashboard}/>
-			      <Scene key="pay" component={Pay} initial={true} />
+			      <Scene key="dashboard" component={Dashboard} initial={true} />
+			      <Scene key="pay" component={Pay} />
 			    </Stack>
 			 </Router>
 			)

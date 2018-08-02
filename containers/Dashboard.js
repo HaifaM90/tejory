@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View,Image} from 'react-native'
-import * as firebase from 'firebase'
-import {Column as Col, Row} from 'react-native-flexbox-grid';
+import {Column as Col, Row} from 'react-native-flexbox-grid'
+import Topbar from '../components/Topbar';
 
 export default class Dashboard extends React.Component {
  state = {
@@ -10,48 +10,46 @@ export default class Dashboard extends React.Component {
  }
 
 componentWillMount() {
-  // firebase.initializeApp({
-  //   apiKey: "AIzaSyDIc8Dcpn03wvh8gA3rUWivuQt8rHKP0As",
-  //   authDomain: "wallet-01.firebaseapp.com",
-  //   databaseURL: "https://wallet-01.firebaseio.com",
-  //   projectId: "wallet-01",
-  //   storageBucket: "wallet-01.appspot.com",
-  //   messagingSenderId: "270396117096"
-  //   });
-  // this.ref = firebase.firestore().collection('users')
-  // this.ref.add({
-  //   border_number: "1234",
-  //   mobile_number:"056765342",
-  //   name: "test",
-  //   password: "1234"
-  // })
+  
 }
 
  render() {
    return (
-     <View>
-        <View style = {styles.topbar}>
-          <Image style={styles.icon} source={require('../images/user.png')} />
-          <Text style={styles.username}>Mohammed Salem</Text>
-          <Image style={styles.icon} source={require('../images/settings-work-tool.png')} />
-        </View>
+     <View style={{backgroundColor: '#dddad7', height: '100%'}}>
+
+     <Topbar title='Nasser Ali Khan'> </Topbar>
         <View style = {styles.middle}>
           <View style = {styles.balance_box}>
-            <Text style={styles.balance}>500 SR</Text>
+            <Image style={styles.money_icon} source={require('../images/rich.png')} />
+              <Text style={styles.balance}>500 SR</Text>
+              <Text style={styles.heading_title}>Current Balance</Text>
           </View>
         </View>
         <View style={styles.quick_actions}>
-          <View style={{flexDirection: 'row'}}>
-            <View style = {styles.right_box}>
-              <Text style={styles.label}>SMS</Text>
+        <View style={{alignItems: 'center'}}>
+            <View style = {styles.first_box}>
+            <View style={styles.sms_box}>
+            <Image style={styles.icon} source={require('../images/sms.png')} />
             </View>
-            <View style = {styles.left_box}>
-            <Text style={styles.label}>QR</Text>
+            <View style={styles.left_text}>
+              <Text style={styles.label}>Pay by SMS</Text>
+              </View>
             </View>
+            <View style = {styles.second_box}>
+                <View style={styles.qr_box}>
+            <Image style={styles.icon} source={require('../images/qr-code.png')} />
+            </View>
+          <View style={styles.left_text}>
+            <Text style={styles.label}>Pay by QR</Text>
+            </View>
+            </View>
+          <View style = {styles.last_box}>
+            <View style={styles.log_box}>
+          <Image style={styles.icon} source={require('../images/account_st.png')} />
           </View>
-          <View style={{alignItems: 'center'}}>
-          <View style = {styles.bottom_box}>
-            <Text style={styles.label}>العمليات</Text>
+          <View style={styles.left_text}>
+            <Text style={styles.label}>Account Statement</Text>
+            </View>
           </View>
           </View>
         </View>
@@ -66,83 +64,129 @@ const styles = StyleSheet.create({
        flex: 1,
        height: 100,
        alignItems:'flex-end' ,
-       paddingBottom: 20,
+       marginTop:5,
        paddingRight: 15,
        paddingLeft: 15,
-       paddingTop: 30,
+       paddingTop: 40,
+       paddingBottom: 20,
        flexDirection: 'row',
        justifyContent: 'space-between',
-       backgroundColor: '#0a2342',
+       borderBottomWidth: 2,
+       borderColor:'#fff',
     },
     middle: {
-      flex: 4,
+      flex: 6,
       alignItems:'center',
-      paddingTop: 30,
       paddingBottom: 30,
-      backgroundColor: '#e7ecef',
-      borderBottomWidth: 1,
-      marginTop: 10
+      marginTop: 20,
+      backgroundColor: '#dddad7',
+
     },
     balance_box: {
-      backgroundColor:'#6ca6cd',
-      padding: 40,
-      borderRadius: 10
+      width: 340,
+      backgroundColor:'#112340',
+      paddingBottom: 40,
+      height: 340,
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems:'center',
     },
     username: {
-      color: '#fff',
+      color: '#112340',
       fontSize: 20,
-      fontWeight: '700',
     },
     balance: {
       fontSize: 50,
-      color: '#fff'
+      color: '#ca9e3b',
+      fontWeight: 'bold',
     },
-    right_box: {
-      backgroundColor:'#6ca6cd',
+    first_box: {
+      backgroundColor:'#b68e34',
       padding: 50,
-      borderRadius: 10,
-      width: 120,
-      height: 120,
-      padding: 30,
-      marginLeft:40,
-      marginRight:10,
+      width: 340,
+      height: 70,
+      padding: 0,
+      marginTop: 20,
+      alignItems: 'center',
+      justifyContent:'flex-start',
+  flexDirection: 'row',
+
+}, second_box: {
+  backgroundColor:'#539e89',
+      padding: 50,
+      width: 340,
+      height: 70,
+      padding: 0,
+      marginTop: 10,
+      alignItems: 'center',
+      justifyContent:'flex-start',
+   flexDirection: 'row'
+
+    },
+    last_box: {
+      backgroundColor:'#376587',
+      padding: 50,
+      width: 340,
+      height: 70,
+      padding: 0,
+      marginTop: 10,
+      alignItems: 'center',
+      justifyContent:'flex-start',
+   flexDirection: 'row'
+
+    },sms_box: {
+        backgroundColor:'#9e7c2d',
+          justifyContent:'center',
+            alignItems: 'center',
+        width: 90,
+            height: 70,
+
+    },qr_box: {
+      backgroundColor:'#43806f',
+      justifyContent:'center',
+      alignItems: 'center',
+      width: 90,
+      height: 70,
+    },
+    log_box: {
+      backgroundColor:'#2d5470',
+      justifyContent:'center',
+      alignItems: 'center',
+      width: 90,
+      height: 70,
+    },
+    heading: {
+      justifyContent:'center',
+      marginTop:10,
       marginBottom:10,
-      alignItems: 'center',
-      justifyContent:'center'
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
     },
-    left_box: {
-      backgroundColor:'#6ca6cd',
-      padding: 50,
-      borderRadius: 10,
-      width: 120,
-      height: 120,
-      padding: 30,
-      marginRight:40,
-      marginLeft:10,
-      marginBottom:10,
-      alignItems: 'center',
-        justifyContent:'center'
-    },
-    bottom_box: {
-      backgroundColor:'#6ca6cd',
-      padding: 50,
-      borderRadius: 10,
-      width: 260,
-      height: 60,
-      padding: 30,
-      margin: 5,
-      alignItems: 'center',
-      justifyContent:'center'
+    heading_title: {
+       color: '#dddad7',
+       fontSize: 30,
     },
     quick_actions: {
       flexDirection: 'column',
-      marginTop:50,
+      marginTop:0,
       flex: 10,
       alignItems:'center',
+      backgroundColor: '#dddad7',
     },
     label: {
-      fontSize: 20,
-      color: '#fff',
-      fontWeight: '700'
-    }
+      fontSize: 24,
+      color: '#dddad7',
+      fontWeight: 'bold'
+    },
+    left_text: {
+      flex: 1,
+      justifyContent: 'center',
+      paddingLeft: 10,
+    },
+    money_icon: {
+      width: 120,
+      height:120,
+
+    },
 });
