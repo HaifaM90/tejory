@@ -5,6 +5,7 @@ import Login from './containers/Login';
 import Signup from './containers/Signup';
 import Dashboard from './containers/Dashboard';
 import Pay from './containers/Pay';
+import AccountStatement from './containers/AccountStatement'
 
 export default class Routes extends Component{
 	render() {
@@ -15,6 +16,7 @@ export default class Routes extends Component{
 		      <Scene key="login" component={Login} title="Login"  initial={true}/>
 		      <Scene key="dashboard" component={Dashboard}   />
 		      <Scene key="pay" component={Pay}  />
+					 <Scene key="account_statement" component={AccountStatement}  />
 		    </Stack>
 		 </Router>
 		)

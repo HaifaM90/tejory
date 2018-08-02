@@ -15,8 +15,8 @@ export default class Dashboard extends React.Component {
  setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
- go = () => {
-    Actions.pay();
+ goAccountS = () => {
+    Actions.account_statement();
   }
 
 sendData = () => {
@@ -58,32 +58,32 @@ componentWillMount() {
           }}>
           >
           <View style={styles2.container}>
-            <TextInput style={styles2.inputBox} 
-                    underlineColorAndroid='rgba(0,0,0,0)' 
+            <TextInput style={styles2.inputBox}
+                    underlineColorAndroid='rgba(0,0,0,0)'
                     placeholder="Code"
                     placeholderTextColor = "#dddad7"
                     selectionColor="#fff"
                     keyboardType="email-address"
                     value={this.state.code}
                     onChangeText={code => this.setState({code})}
-            /> 
-            <TextInput style={styles2.inputBox} 
-                  underlineColorAndroid='rgba(0,0,0,0)' 
+            />
+            <TextInput style={styles2.inputBox}
+                  underlineColorAndroid='rgba(0,0,0,0)'
                   placeholder="Amount"
                   placeholderTextColor = "#dddad7"
                   value={this.state.amount}
                   onChangeText={amount => this.setState({amount})}
-            /> 
+            />
 
             <TouchableOpacity style={styles2.button1} onPress={this.sendData}>
              <Text style={styles2.buttonText}>Send</Text>
-           </TouchableOpacity>  
+           </TouchableOpacity>
            <TouchableOpacity
                 style={styles2.button2}
                 onPress={() => {this.setModalVisible(!this.state.modalVisible);}}>
                 <Text style={styles2.buttonText}>Cancel</Text>
           </TouchableOpacity>
-          </View> 
+          </View>
         </Modal>
 
 
@@ -96,7 +96,7 @@ componentWillMount() {
           </View>
         </View>
 
-        
+
 
         <View style={styles.quick_actions}>
         <View style={{alignItems: 'center'}}>
@@ -118,6 +118,7 @@ componentWillMount() {
             <Text style={styles.label}>Pay by QR</Text>
             </View>
             </View>
+            <TouchableOpacity onPress={() => {this.goAccountS();}}>
           <View style = {styles.last_box}>
             <View style={styles.log_box}>
           <Image style={styles.icon} source={require('../images/account_st.png')} />
@@ -126,6 +127,7 @@ componentWillMount() {
             <Text style={styles.label}>Account Statement</Text>
             </View>
           </View>
+            </TouchableOpacity>
           </View>
         </View>
      </View>
@@ -177,7 +179,7 @@ const styles2 = StyleSheet.create({
     left: 0,
     position: 'absolute',
   }
-  
+
 });
 
 
