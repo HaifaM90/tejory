@@ -19,12 +19,12 @@ export default class Login extends Component{
 		Actions.signup()
 	}
 
-  
+
 
 	render() {
 		return(
 			<View style={styles.container}>
-				<Image  style={{width:250, height: 300,marginTop: 50}}
+				<Image  style={{width:250, height: 300,marginTop: 100}}
                 source={require('../images/logo.png')}/>
 				<Form type="Login"/>
 				<View style={styles.signupTextCont}>

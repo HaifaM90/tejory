@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View,Image,TouchableOpacity, Modal,TextInput} from 'react-native'
+import { StyleSheet, Text, View,Image,TouchableOpacity, Modal,TextInput,Linking} from 'react-native'
 import {Column as Col, Row} from 'react-native-flexbox-grid'
 import Topbar from '../components/Topbar';
 
@@ -17,6 +17,21 @@ export default class Dashboard extends React.Component {
   }
  go = () => {
     Actions.pay();
+  }
+
+sendData = () => {
+    const uid = 1;
+    const toID = this.state.code;
+
+    const url = 'sms:+13342924340?body=From:'+uid+'\nTo:'+toID+'\nAmount:'+this.state.amount
+
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log('Unsupported url: ' + url)
+      } else {
+        return Linking.openURL(url)
+      }
+    }).catch(err => console.error('An error occurred', err))
   }
 
 componentWillMount() {
@@ -39,6 +54,8 @@ componentWillMount() {
           animationType="slide"
           transparent={false}
           visible={this.state.modalVisible}
+          onRequestClose={() => {
+          }}>
           >
           <View style={styles2.container}>
             <TextInput style={styles2.inputBox} 
@@ -252,7 +269,7 @@ const styles = StyleSheet.create({
     },
     heading_title: {
        color: '#dddad7',
-       fontSize: 30,
+       fontSize: 20,
     },
     quick_actions: {
       flexDirection: 'column',
@@ -262,7 +279,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#dddad7',
     },
     label: {
-      fontSize: 24,
+      fontSize: 18,
       color: '#dddad7',
       fontWeight: 'bold'
     },

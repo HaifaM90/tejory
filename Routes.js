@@ -9,14 +9,14 @@ import Pay from './containers/Pay';
 export default class Routes extends Component{
 	render() {
 		return(
-			<Router>
-			    <Stack key="root" hideNavBar={true}>
-			      <Scene key="signup" component={Signup} title="Register"  />
-			      <Scene key="login" component={Login} title="Login"initial={true} />
-			      <Scene key="dashboard" component={Dashboard}   />
-			      <Scene key="pay" component={Pay}  />
-			    </Stack>
-			 </Router>
-			)
+		<Router>
+		    <Stack key="root" hideNavBar={true}>
+		      <Scene key="signup" component={Signup} title="Register"  />
+		      <Scene key="login" component={Login} title="Login"  initial={true}/>
+		      <Scene key="dashboard" component={Dashboard}   />
+		      <Scene key="pay" component={Pay}  />
+		    </Stack>
+		 </Router>
+		)
 	}
 }
