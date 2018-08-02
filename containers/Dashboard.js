@@ -56,7 +56,7 @@ componentWillMount() {
           visible={this.state.modalVisible}
           onRequestClose={() => {
           }}>
-          >
+
 
           <View style={styles2.container}>
           <Topbar title='Nasser Ali Khan'> </Topbar>

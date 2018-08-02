@@ -2,7 +2,7 @@
   "expo": {
     "name": "Tejory-تجوري",
     "icon": "./images/app-icon.png",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "ios": {
       "bundleIdentifier": "hajj.hachathon.tamkeen"
     },

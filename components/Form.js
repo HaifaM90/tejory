@@ -5,7 +5,7 @@ import {
   View,
   Image,
   TextInput,
-  TouchableOpacity 
+  TouchableOpacity
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
@@ -34,24 +34,24 @@ export default class Form extends Component {
             {this.state.error !== '' && (
                 this.state({error})
               )}
-            <TextInput style={styles.inputBox} 
+            <TextInput style={styles.inputBox}
                 placeholder="Border Number"
                 placeholderTextColor = "#dddad7"
                 selectionColor="#fff"
                 keyboardType="email-address"
                 value={this.state.border_num}
                 onChangeText={border_num => this.setState({border_num})}
-                />  
+                />
             {this.props.type == 'Signup' && (
-                <TextInput style={styles.inputBox} 
+                <TextInput style={styles.inputBox}
                 placeholder="Mobile Number"
                 placeholderTextColor = "#dddad7"
                 value={this.state.mobile}
                 onChangeText={mobile => this.setState({mobile})}
-                />  
+                />
               )}
-            <TextInput style={styles.inputBox} 
-              underlineColorAndroid='rgba(0,0,0,0)' 
+            <TextInput style={styles.inputBox}
+              underlineColorAndroid='rgba(0,0,0,0)'
               placeholder="Password"
               secureTextEntry={this.props.type == "Login" ? true : false}
               placeholderTextColor = "#dddad7"
@@ -59,17 +59,17 @@ export default class Form extends Component {
               onChangeText={password=> this.setState({password})}
               />
               {this.props.type == 'Signup' && (
-                <TextInput style={styles.inputBox} 
+                <TextInput style={styles.inputBox}
                 placeholder="Password Confirmation"
                 secureTextEntry={true}
                 placeholderTextColor = "#dddad7"
-                value={this.this.state.password_confirmation}
+                value={this.state.password_confirmation}
                 onChangeText={password_confirmation => this.setState({password_confirmation})}
-                />  
+                />
               )}
              <TouchableOpacity style={styles.button} onPress={this.go}>
                <Text style={styles.buttonText}>{this.props.type}</Text>
-             </TouchableOpacity>     
+             </TouchableOpacity>
       </View>
 			)
 	}
@@ -110,5 +110,5 @@ const styles = StyleSheet.create({
     left: 0,
     position: 'absolute',
   }
-  
+
 });
