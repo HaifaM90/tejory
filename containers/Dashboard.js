@@ -73,21 +73,6 @@ componentWillMount() {
 }
 
 const styles = StyleSheet.create({
-    topbar: {
-       width: '100%',
-       flex: 1,
-       height: 100,
-       alignItems:'flex-end' ,
-       marginTop:5,
-       paddingRight: 15,
-       paddingLeft: 15,
-       paddingTop: 40,
-       paddingBottom: 20,
-       flexDirection: 'row',
-       justifyContent: 'space-between',
-       borderBottomWidth: 2,
-       borderColor:'#fff',
-    },
     middle: {
       flex: 4,
       alignItems:'center',
@@ -104,10 +89,6 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems:'center',
-    },
-    username: {
-      color: '#112340',
-      fontSize: 20,
     },
     balance: {
       fontSize: 50,
